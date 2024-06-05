@@ -1,0 +1,58 @@
+{% extends 'healthyfood/base.html' %}
+{% load static %}
+
+{% block css %}
+	<link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/menu.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+	<div class="container">
+    <div class="row">
+        <div class="col-lg-7">
+            <h4 class="mt-3 mb-3">Профиль</h4>
+            <div class="col-lg-12 text-center">
+                <img width="100" height="100" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8idONjUQDJM3m1U6p8a10nUwmbnSMF-HFSw&s"
+                     class="img-thumbnail">
+            </div>
+            <form action="{% url 'users:profile' %} }}" method="post">
+                {% csrf_token %}
+                <div class="form-row">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="small mb-1" for="{{ form.first_name.id_for_label }}">Имя</label>
+                            {{ form.first_name }}
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="small mb-1" for="{{ form.last_name.id_for_label }}">Фамилия</label>
+                            {{ form.last_name }}
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-lg-6">
+                        <label class="small mb-1" for="{{ form.username.id_for_label }}">Имя пользователя</label>
+                        {{ form.username }}
+                    </div>
+                    <div class="col-lg-6">
+                        <label class="small mb-1" for="{{ form.email.id_for_label }}">Адрес электронной
+                            почты</label>
+                        {{ form.email }}
+                    </div>
+                </div>
+                <div class="form-row">
+                </div>
+            </form>
+        </div>
+        <div class="col-lg-5">
+            {% include 'healthyfood/baskets.html' %}
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap core JavaScript -->
+<script src="{% static 'jquery/jquery.min.js' %}"></script>
+<script src="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+{% endblock %}

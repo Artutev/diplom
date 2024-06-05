@@ -1,0 +1,42 @@
+{% extends 'users/base.html' %}
+
+{% block content %}
+    
+	<div class="calculating__field"><div class="wrapper">
+  <div class="header">
+    <h3 class="sign-in">Sign in</h3>
+    <div> <a class="button" href="{% url 'users:registration' %}">Register</a>
+    </div>
+  </div>
+   <div class="clear"></div>
+  <form action="{% url 'users:login' %}" method="post">
+      {% csrf_token %}
+      <div>
+          <label class="user" for="{{ form.username.id_for_label }}">
+              <svg viewBox="0 0 32 32">
+                  <g filter="">
+                      <use href="#man-people-user"></use>
+                  </g>
+              </svg>
+          </label>
+          {{ form.username }}
+      </div>
+      <div>
+          <label class="lock" for="{{ form.password.id_for_label }}">
+              <svg viewBox="0 0 32 32">
+                  <g filter="">
+                      <use href="#lock-locker"></use>
+                  </g>
+              </svg>
+          </label>
+          {{ form.password }}
+      </div>
+      <div>
+          <input type="submit" value="Sign in"/>
+      </div>
+      <div class="clear"></div>
+      <span class="forgot-label">Lost your password?</span>
+
+  </form>
+</div>
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends 'healthyfood/base.html' %}
+{% load static %}
+
+{% block css %}
+	<link rel="stylesheet" href="{% static 'css/menu.css' %}">
+{% endblock %}
+
+{% block content %}
+	<div class="menu">
+        <h2 class="title">Наше меню на день</h2>
+
+        <div class="menu__field">
+            <div class="container">
+                {% for menu in menu %}
+                   <div class="menu__item">
+                    <img src="{{ menu.image.url }}" alt="vegy">
+                    <h3 class="menu__item-subtitle">{{ menu.name }}</h3>
+                    <div class="menu__item-descr">{{ menu.description }}</div>
+                    <div class="menu__item-divider"></div>
+                    <div class="menu__item-price">
+                        <div class="menu__item-total"><span>{{ menu.price }}</span> тг/месяц</div>
+                        <a class="btn btn-outline-success"
+                           href="{% url 'healthyfood:basket_add' menu.id %}">
+                            Отправить в корзину
+                        </a>
+                    </div>
+                </div> 
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block footer %}
+	<footer class="footer">
+        <div class="container">
+            <div class="social">
+                <div class="subtitle">Мы в социальных сетях:</div>
+                <a href="#" class="link">instagram</a>
+                <a href="#" class="link">facebook</a>
+            </div>
+            <div class="pepper">
+                <img src="{% static 'icons/veg.svg' %}" alt="pepper">
+            </div>
+            <div class="call">
+                <div class="subtitle">Или позвоните нам</div>
+                <a href="#" class="link">88005553535</a>
+                <a href="#" class="link">88005553535</a>
+            </div>
+        </div>
+    </footer>
+{% endblock %}

@@ -1,0 +1,76 @@
+{% extends 'users/base.html' %}
+
+{% block content %}
+	<div class="calculating__field"><div class="wrapper">
+  <div class="header">
+    <h3 class="sign-in">Register</h3>
+    <div> <a class="button" href="{% url 'users:login' %}">Sign in</a></div>
+  </div>
+   <div class="clear"></div>
+  <form action="{% url 'users:registration' %}" method="post">
+      {% csrf_token %}
+                  <div>
+         <label class="user" for="{{ form.first_name.id_for_label }}">
+           <svg viewBox="0 0 32 32">
+                    <g filter="">
+                      <use href=""></use>
+                    </g>
+                  </svg>
+         </label>
+        {{ form.first_name }}
+      </div>
+            <div>
+         <label class="user" for="{{ form.last_name.id_for_label }}">
+           <svg viewBox="0 0 32 32">
+                    <g filter="">
+                      <use href=""></use>
+                    </g>
+                  </svg>
+         </label>
+        {{ form.last_name }}
+      </div>
+      <div>
+         <label class="email" for="{{ form.email.id_for_label }}">
+           <svg viewBox="0 0 32 32">
+                    <g filter="">
+                      <use href=""></use>
+                    </g>
+           </svg>
+         </label>
+        {{ form.email }}
+      </div>
+      <div>
+        <label class="user" for="{{ form.username.id_for_label }}">
+          <svg viewBox="0 0 32 32">
+                   <g filter="">
+                     <use href=""></use>
+                   </g>
+                 </svg>
+        </label>
+       {{ form.username }}
+     </div>
+      <div>
+        <label class="lock" for="{{ form.password1.id_for_label }}">
+          <svg viewBox="0 0 32 32">
+             <g filter="">
+               <use href="#lock-locker"></use>
+              </g>
+            </svg>
+        </label>
+        {{ form.password1 }}
+        <label class="lock" for="{{ form.password2.id_for_label }}">
+            <svg viewBox="0 0 32 32">
+               <g filter="">
+                 <use href="#lock-locker"></use>
+                </g>
+              </svg>
+          </label>
+          {{ form.password2 }}
+      </div>
+     <div>
+      <input type="submit" value="Register" />
+    </div>
+      <div class="clear"></div>
+  </form>
+  </div>
+{% endblock %}

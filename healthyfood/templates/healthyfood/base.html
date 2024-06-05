@@ -1,0 +1,51 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    {% block css %} {% endblock %}
+</head>
+<body>
+    <header class="header">
+        <div class="header__left-block">
+            <div class="header__logo">
+                <a href="{% url 'index' %}" class="header__link"><img src="{% static 'icons/logo.svg' %}" alt="Логотип"></a>
+            </div>
+            <nav class="header__links">
+                <a href="{% url 'products:index' %}" class="header__link">Меню</a>
+                {% if user.is_authenticated %}
+                    <a href="{% url 'users:profile' %}" class="header__link">Профиль</a>
+                <a href="{% url 'users:logout' %}" class="header__link">Выйти</a>
+                {% else %}
+                <a href="{% url 'users:login' %}" class="header__link">Войти</a>
+                {% endif %}
+            </nav>
+        </div>
+        <div class="header__right-block">
+            {% if user.is_superuser or user.is_staff %}
+                <a href="{% url 'admin:index' %}" class="header__link">Админ-панель</a>
+                {% endif %}
+        </div>
+    </header>
+    <div class="sidepanel">
+        <div class="sidepanel__text"><span>Социальные сети</span></div>
+        <div class="sidepanel__divider"></div>
+        <a href="#" class="sidepanel__icon">
+            <img src="{% static 'icons/instagram.svg' %}" alt="instagram">
+        </a>
+        <a href="#" class="sidepanel__icon">
+            <img src="{% static 'icons/facebook.svg' %}" alt="facebook">
+        </a>
+    </div>
+
+    {% block content %} {% endblock %}
+
+    {% block footer %} {% endblock %}
+
+{% block modal %} {% endblock %}
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>
